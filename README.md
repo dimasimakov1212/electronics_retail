@@ -48,14 +48,15 @@ http://127.0.0.1:8000/
 ### Создание суперпользователя
 
 В файле .env задать значение пароля для суперпользователя SUPER_USER_PASSWORD
+и имя SUPER_USER_NAME
 
 Выполнить команду
 ```commandline
 python manage.py create_super_user
 ```
 
-Для входа в админку использовать имя **admin@dima.pro**
-и пароль, который указали в переменной SUPER_USER_PASSWORD
+Для входа в админку использовать имя и пароль, 
+который указали в переменных SUPER_USER_NAME и SUPER_USER_PASSWORD
 
 
 ### Тесты
