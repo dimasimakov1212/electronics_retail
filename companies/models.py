@@ -26,7 +26,8 @@ class Company(models.Model):
                                     verbose_name='тип компании')
     company_supplier = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True,
                                          verbose_name='поставщик')
-    debt_to_supplier = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='задолженность поставщику')
+    debt_to_supplier = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True,
+                                           verbose_name='задолженность поставщику')
     company_date_creation = models.DateField(auto_now=False, auto_now_add=True, verbose_name='дата создания')
     company_products = models.ManyToManyField(Product, verbose_name='товары')
 
