@@ -1,4 +1,6 @@
 from rest_framework import generics
+from rest_framework.filters import OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
 from companies.models import Company
 from companies.paginators import CompanyPaginator
@@ -27,6 +29,10 @@ class CompanyListAPIView(generics.ListAPIView):
     pagination_class = CompanyPaginator  # пагинация
 
     permission_classes = [IsActive]
+
+    filter_backends = [DjangoFilterBackend, OrderingFilter]  # Бэкенд для обработки фильтра
+    filterset_fields = ('company_country',)
+    ordering_fields = ['company_country']
 
     def get_queryset(self):
         """ Определяем параметры вывода объектов """
