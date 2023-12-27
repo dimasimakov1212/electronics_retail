@@ -3,12 +3,15 @@ from rest_framework import generics
 from companies.models import Company
 from companies.paginators import CompanyPaginator
 from companies.serializers import CompanyCreateSerializer, CompanySerializer, CompanyUpdateSerializer
+from users.permissions import IsActive
 
 
 class CompanyCreateAPIView(generics.CreateAPIView):
     """ Создание компании """
 
     serializer_class = CompanyCreateSerializer
+
+    permission_classes = [IsActive]
 
     def perform_create(self, serializer):
         """ Определяем порядок создания нового объекта """
@@ -23,6 +26,8 @@ class CompanyListAPIView(generics.ListAPIView):
     serializer_class = CompanySerializer
     pagination_class = CompanyPaginator  # пагинация
 
+    permission_classes = [IsActive]
+
     def get_queryset(self):
         """ Определяем параметры вывода объектов """
 
@@ -36,6 +41,8 @@ class CompanyRetrieveAPIView(generics.RetrieveAPIView):
     serializer_class = CompanySerializer
     queryset = Company.objects.all()
 
+    permission_classes = [IsActive]
+
 
 class CompanyUpdateAPIView(generics.UpdateAPIView):
     """ Изменение компании """
@@ -43,8 +50,12 @@ class CompanyUpdateAPIView(generics.UpdateAPIView):
     serializer_class = CompanyUpdateSerializer
     queryset = Company.objects.all()
 
+    permission_classes = [IsActive]
+
 
 class CompanyDestroyAPIView(generics.DestroyAPIView):
     """ Удаление компании """
 
     queryset = Company.objects.all()
+
+    permission_classes = [IsActive]
