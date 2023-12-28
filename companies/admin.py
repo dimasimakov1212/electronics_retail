@@ -16,7 +16,7 @@ class CompanyAdmin(admin.ModelAdmin):
         for item in queryset:
             item.debt_to_supplier = 0
             item.save()
-        self.message_user(request, f'Задолженность перед поставщиком у выбранных покупателей обнулена.')
+        self.message_user(request, 'Задолженность перед поставщиком у выбранных покупателей обнулена.')
 
     nullify_debt.short_description = 'Обнулить задолженность'
 
